@@ -6,6 +6,9 @@ using Microsoft.Extensions.Hosting;
 using RMotownFestival.Api.Options;
 using RMotownFestival.DAL;
 using Microsoft.EntityFrameworkCore;
+using Azure.Storage;
+using Azure.Storage.Blobs;
+using RMotownFestival.Api.Common;
 
 namespace RMotownFestival.Api
 {
@@ -25,6 +28,11 @@ namespace RMotownFestival.Api
 
             services.AddCors();
             services.AddControllers();
+
+            services.AddSingleton(p => new StorageSharedKeyCredential(Configuration.GetValue<string>("Storage:AccountName"), Configuration.GetValue<string>("Storage:AccountKey")));
+            services.AddSingleton(p => new BlobServiceClient(Configuration.GetValue<string>("Storage:ConnectionString")));
+            services.AddSingleton<BlobUtility>();
+            services.Configure<BlobSettingsOptions>(Configuration.GetSection("Storage"));
 
             services.AddDbContext<MotowDbContext>(options => options.UseSqlServer("name=ConnectionStrings:DefaultConnection"));
             services.AddApplicationInsightsTelemetry(Configuration["APPINSIGHTS_CONNECTIONSTRING"]);
