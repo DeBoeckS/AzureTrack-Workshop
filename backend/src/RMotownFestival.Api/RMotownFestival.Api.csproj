@@ -3,6 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <StartupObject></StartupObject>
+    <UserSecretsId>91fb2af9-ba19-4488-9c3b-a61678e274b1</UserSecretsId>
+    <ApplicationInsightsResourceId>/subscriptions/5b8db43e-b981-4eed-bb28-3695afe17257/resourceGroups/AzureTrackLabSDB/providers/microsoft.insights/components/MotownFestivalInsightsSDB</ApplicationInsightsResourceId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.15.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
