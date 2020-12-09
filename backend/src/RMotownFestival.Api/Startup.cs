@@ -1,11 +1,11 @@
-
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-
 using RMotownFestival.Api.Options;
+using RMotownFestival.DAL;
+using Microsoft.EntityFrameworkCore;
 
 namespace RMotownFestival.Api
 {
@@ -25,6 +25,8 @@ namespace RMotownFestival.Api
 
             services.AddCors();
             services.AddControllers();
+
+            services.AddDbContext<MotowDbContext>(options => options.UseSqlServer("Server=tcp:rmotownsqlserversdb.database.windows.net,1433;Initial Catalog=rmotowndbsdb;Persist Security Info=False;User ID=adminsdb;Password={your_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

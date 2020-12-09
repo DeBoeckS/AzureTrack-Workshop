@@ -16,7 +16,8 @@ namespace RMotownFestival.Api.Data
             var stages = new List<Stage>() {
                          new Stage { Id = 1, Name = "Main Stage", Description = description },
                          new Stage { Id = 2, Name = "Orange Room", Description = description },
-                         new Stage { Id = 3, Name = "StarDust", Description = description }
+                         new Stage { Id = 3, Name = "StarDust", Description = description },
+                         new Stage { Id = 4, Name = "Marvin Gaye", Description = description }
             };
 
             var artists = new List<Artist>() {
