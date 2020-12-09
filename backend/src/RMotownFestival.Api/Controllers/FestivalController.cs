@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-
+using Microsoft.ApplicationInsights;
 using Microsoft.AspNetCore.Mvc;
 
 using RMotownFestival.Api.Data;
@@ -15,9 +15,11 @@ namespace RMotownFestival.Api.Controllers
     public class FestivalController : ControllerBase
     {
         private readonly MotowDbContext _context;
-        public FestivalController(MotowDbContext context)
+        private readonly TelemetryClient _telemetryClient;
+        public FestivalController(MotowDbContext context, TelemetryClient client)
         {
             _context = context;
+            _telemetryClient = client;
         }
 
         [HttpGet("LineUp")]
@@ -29,8 +31,16 @@ namespace RMotownFestival.Api.Controllers
 
         [HttpGet("Artists")]
         [ProducesResponseType((int)HttpStatusCode.OK, Type = typeof(IEnumerable<Artist>))]
-        public ActionResult GetArtists()
+        public ActionResult GetArtists(bool? withRatings)
         {
+            if(withRatings.HasValue && withRatings.Value)
+            {
+                _telemetryClient.TrackEvent("List of artists with ratings");
+            }
+            else
+            {
+                _telemetryClient.TrackEvent("List of artists without ratings");
+            }
             return Ok(_context.Artists);
         }
 

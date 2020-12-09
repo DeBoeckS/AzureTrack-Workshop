@@ -26,7 +26,7 @@ namespace RMotownFestival.Api
             services.AddCors();
             services.AddControllers();
 
-            services.AddDbContext<MotowDbContext>(options => options.UseSqlServer("Server=tcp:rmotownsqlserversdb.database.windows.net,1433;Initial Catalog=rmotowndbsdb;Persist Security Info=False;User ID=adminsdb;Password={your_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"));
+            services.AddDbContext<MotowDbContext>(options => options.UseSqlServer("name=ConnectionStrings:DefaultConnection"));
             services.AddApplicationInsightsTelemetry(Configuration["APPINSIGHTS_CONNECTIONSTRING"]);
         }
 
