@@ -22,7 +22,9 @@ namespace RMotownFestival.Api.Common
             Options = options.Value;
         }
 
-        public BlobContainerClient GetPicturesContainer() => Client.GetBlobContainerClient(Options.ThumbsContainer);
+        public BlobContainerClient GetThumbsContainer() => Client.GetBlobContainerClient(Options.ThumbsContainer);
+
+        public BlobContainerClient GetPicturesContainer() => Client.GetBlobContainerClient(Options.PicturesContainer);
 
         public string GetSasUri(BlobContainerClient container, string blobName)
         {
